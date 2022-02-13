@@ -7,10 +7,15 @@
             <div class="pt-4">
                 <h5>Flipping Method</h5>
 
-                <h5>Gems</h5>
+                <h5 class="py-3">Gems</h5>
 
                 <h5>Search</h5>
             </div>
         </div>
+    </div>
+    <div>
+        {% for name, cost in costs %}
+            <p>{{ name, cost }}</p>
+        {% endfor %}
     </div>
 {% endblock %}
