@@ -1,21 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <!-- Search block -->
     <div class="bg-light">
         <div class="p-4">
             <h3>Settings</h3>
             <div class="pt-4">
                 <h5>Flipping Method</h5>
-                <div class="p-1">
-                    <input type="radio" name="flipping-method" id="vaal-orb">
-                    <label for="vaal-orb">Vaal Orb</label>
-                    <input type="radio" name="flipping-method" id="doryanis-institute">
-                    <label for="doryanis-institute">Doryani's Institute</label>
-                    <input type="radio" name="flipping-method" id="prime-regrading">
-                    <label for="prime-regrading">Prime Regrading</label>
-                    <input type="radio" name="flipping-method" id="secondary-regrading">
-                    <label for="secondary-regrading">Secondary Regrading</label>
-                </div>
+                <form action="/flipping" method="get">
+                    <div class="p-1">
+                        <input type="radio" name="flipping-method" id="vaal-orb" value="vaal-orb">
+                        <label for="vaal-orb">Vaal Orb</label>
+                        <input type="radio" name="flipping-method" id="doryanis-institute" value="doryanis-institute">
+                        <label for="doryanis-institute">Doryani's Institute</label>
+                        <input type="radio" name="flipping-method" id="prime-regrading" value="prime-regrading">
+                        <label for="prime-regrading">Prime Regrading</label>
+                        <input type="radio" name="flipping-method" id="secondary-regrading" value="secondary-regrading">
+                        <label for="secondary-regrading">Secondary Regrading</label>
+                        <input type="submit">
+                    </div>
+                </form>
                 <h5 class="py-3">Gems</h5>
 
                 <h5>Search</h5>
@@ -26,9 +30,10 @@
             </div>
         </div>
     </div>
-    <div>
-        {% for name, cost in costs %}
-            <p>{{ name, cost }}</p>
-        {% endfor %}
-    </div>
+    <!-- Search result -->
+    <p>
+        {% if flipping_method %}
+                <h5> {{ flipping_method }} </h5>
+        {% endif %}
+    </p>
 {% endblock %}
