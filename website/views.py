@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 import requests
 import pandas as pd
 
@@ -25,5 +25,10 @@ def get_gem_sample():
 
 @views.route("/")
 def home():
-    costs = get_currency()
-    return render_template("home.html", costs=costs)
+    return render_template("home.html")
+
+
+@views.route("/flipping/")
+def flipping_method():
+    flipping_method = request.args.get("flipping-method")
+    return render_template("home.html", flipping_method=flipping_method)
