@@ -31,4 +31,9 @@ def home():
 @views.route("/flipping/")
 def flipping_method():
     flipping_method = request.args.get("flipping-method")
-    return render_template("home.html", flipping_method=flipping_method)
+
+    ### query gems of flipping-method from database ###
+    gems = None
+    ###################################################
+    
+    return render_template("home.html", gems=gems)
