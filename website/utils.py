@@ -20,6 +20,14 @@ def update_currency():
         value = currency["chaosEquivalent"]
 
         ### update database ###
+        if x:= Currency.query.filter_by(name=name).first():
+            # update
+            x.value = value
+        else:
+            # create
+            db.session.add(Currency(name=name, value=value))
+    
+    db.session.commit()
 
 
 def update_gem():
