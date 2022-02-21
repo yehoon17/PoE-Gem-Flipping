@@ -20,13 +20,13 @@ def update_currency():
         value = currency["chaosEquivalent"]
 
         ### update database ###
-        if x:= Currency.query.filter_by(name=name).first():
+        if x := Currency.query.filter_by(name=name).first():
             # update
             x.value = value
         else:
             # create
             db.session.add(Currency(name=name, value=value))
-    
+
     db.session.commit()
 
 
@@ -35,3 +35,11 @@ def update_gem():
     content = response.json()["lines"]
     keys = ["name", "corrupted", "gemLevel",
             "gemQuality", "chaosValue", "listingCount"]
+    columns = {"name": "name", "corrupted": "corrupted", "gemLevel": "level",
+               "gemQuality": "quality", "chaosValue": "value", "listingCount": "listed"}
+
+    gems = [{columns[key]: gem[key] for key in keys} for gem in content]
+    for gem in gems:
+        pass
+
+    db.session.commit()
