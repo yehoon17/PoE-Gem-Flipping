@@ -20,8 +20,11 @@ def home():
 def flipping_method():
     flipping_method = request.args.get("flipping-method")
 
-    ### query gems of flipping-method from database ###
-    gems = None
-    ###################################################
+    # gems = gems_by(flipping_method)
+
+    ####### testing ######
+    update_gem()
+    gems = Gem.query.all()
+    ######################
 
     return render_template("home.html", gems=gems)
