@@ -12,6 +12,8 @@ class Currency(db.Model):
 class Gem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
+    alternative = db.Column(db.String(10), nullable=False)
+    vaal = db.Column(db.Boolean, nullable=False)
     corrupted = db.Column(db.Boolean, nullable=False)
     level = db.Column(db.Integer, nullable=False)
     quality = db.Column(db.Integer, nullable=False)
