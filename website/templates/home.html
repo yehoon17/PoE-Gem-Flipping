@@ -33,7 +33,7 @@
     <div class="p-3">
         {% if not gems %}
         <h3>Currency Prices</h3>
-        <table>
+        <table class="table">
             <th>Name</th>
             <th>Value</th>
             {% for x in currency %}
@@ -45,12 +45,24 @@
         </table>
         {% else %}
         <h3>Gems</h3>
-        <table>
+        <table class="table">
             <th>Name</th>
+            <th>Alternative</th>
+            <th>Vaal</th>
+            <th>Level</th>
+            <th>Quality</th>
+            <th>Corrupted</th>
+            <th>Listed</th>
             <th>Value</th>
             {% for x in gems %}
             <tr>
                 <td>{{ x.name }}</td>
+                <td>{{ x.alternative }}</td>
+                <td>{{ x.vaal }}</td>
+                <td>{{ x.level }}</td>
+                <td>{{ x.quality }}</td>
+                <td>{{ x.corrupted }}</td>
+                <td>{{ x.listed }}</td>
                 <td>{{ x.value }}</td>
             </tr>
             {% endfor %}
