@@ -38,8 +38,14 @@ def get_gems():
     columns = {"name": "name", "corrupted": "corrupted", "gemLevel": "level",
                "gemQuality": "quality", "chaosValue": "value", "listingCount": "listed"}
 
-    gems = [{columns[key]: gem[key] for key in keys} for gem in content]
+    gems = []
+    for gem in content:
+        gem.setdefault("gemQuality", 0)
+        gem.setdefault("corrupted", False)
+        gems.append({columns[key]: gem[key] for key in keys})
+
     return gems
+
 
 def disassemble(name):
     # get alternative
@@ -56,12 +62,22 @@ def disassemble(name):
         name = " ".join(name.split()[1:])
     else:
         vaal = False
-        
-    return alternative, vaal, name
+
+    return (alternative, vaal, name)
+
 
 def update_gem():
     gems = get_gems()
     for gem in gems:
-        alternative, vaal, name = disassemble(gems["name"])
+        alternative, vaal, name = disassemble(gem["name"])
+        gem["name"] = name
+        gem["vaal"] = vaal
+        gem["alternative"] = alternative
+
+        db.session.add(Gem(**gem))
 
     db.session.commit()
+
+
+def gems_by(flipping_method):
+    pass
