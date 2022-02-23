@@ -30,7 +30,6 @@
             </div>
         </div>
     </div>
-    <!-- Show currencies -->
     <div class="p-3">
         {% if not gems %}
         <h3>Currency Prices</h3>
@@ -44,10 +43,18 @@
             </tr>
             {% endfor %}
         </table>
+        {% else %}
+        <h3>Gems</h3>
+        <table>
+            <th>Name</th>
+            <th>Value</th>
+            {% for x in gems %}
+            <tr>
+                <td>{{ x.name }}</td>
+                <td>{{ x.value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
         {% endif %}
     </div>
-    <!-- Search result -->
-    {% if gems %}
-
-    {% endif %}
 {% endblock %}
