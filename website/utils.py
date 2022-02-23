@@ -30,7 +30,7 @@ def update_currency():
     db.session.commit()
 
 
-def update_gem():
+def get_gems():
     response = requests.get(SKILL_GEM_URL)
     content = response.json()["lines"]
     keys = ["name", "corrupted", "gemLevel",
@@ -39,7 +39,29 @@ def update_gem():
                "gemQuality": "quality", "chaosValue": "value", "listingCount": "listed"}
 
     gems = [{columns[key]: gem[key] for key in keys} for gem in content]
+    return gems
+
+def disassemble(name):
+    # get alternative
+    alternative_opt = ("Anomalous", "Divergent", "Phantasmal")
+    if name.startswith(alternative_opt):
+        alternative = name.split()[0]
+        name = " ".join(name.split()[1:])
+    else:
+        alternative = "Normal"
+
+    # get vaal
+    if name.startswith("Vaal"):
+        vaal = True
+        name = " ".join(name.split()[1:])
+    else:
+        vaal = False
+        
+    return alternative, vaal, name
+
+def update_gem():
+    gems = get_gems()
     for gem in gems:
-        pass
+        alternative, vaal, name = disassemble(gems["name"])
 
     db.session.commit()
