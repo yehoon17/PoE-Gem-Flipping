@@ -1,72 +1,73 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <!-- Search block -->
-    <div class="bg-light">
-        <div class="p-4">
-            <h3>Settings</h3>
-            <div class="pt-4">
-                <h5>Flipping Method</h5>
-                <form action="/flipping" method="get">
-                    <div class="p-1">
-                        <input type="radio" name="flipping-method" id="vaal-orb" value="vaal-orb">
-                        <label for="vaal-orb">Vaal Orb</label>
-                        <input type="radio" name="flipping-method" id="doryanis-institute" value="doryanis-institute">
-                        <label for="doryanis-institute">Doryani's Institute</label>
-                        <input type="radio" name="flipping-method" id="prime-regrading" value="prime-regrading">
-                        <label for="prime-regrading">Prime Regrading</label>
-                        <input type="radio" name="flipping-method" id="secondary-regrading" value="secondary-regrading">
-                        <label for="secondary-regrading">Secondary Regrading</label>
-                        <input type="submit">
-                    </div>
-                </form>
-                <h5 class="py-3">Gems</h5>
-
-                <h5>Search</h5>
+<h4 class="mx-4 mb-5"><a href="/gem-info" style="color:#777777; text-decoration:none">Gem Info</a></h3>
+<!-- Search block -->
+<div class="bg-light">
+    <div class="p-4">
+        <h3>Settings</h3>
+        <div class="pt-4">
+            <h5>Flipping Method</h5>
+            <form action="/flipping" method="get">
                 <div class="p-1">
-                    <input type="search" id="gem-search" name="q">                    
-                    <button>Search</button>
+                    <input type="radio" name="flipping-method" id="vaal-orb" value="vaal-orb">
+                    <label for="vaal-orb">Vaal Orb</label>
+                    <input type="radio" name="flipping-method" id="doryanis-institute" value="doryanis-institute">
+                    <label for="doryanis-institute">Doryani's Institute</label>
+                    <input type="radio" name="flipping-method" id="prime-regrading" value="prime-regrading">
+                    <label for="prime-regrading">Prime Regrading</label>
+                    <input type="radio" name="flipping-method" id="secondary-regrading" value="secondary-regrading">
+                    <label for="secondary-regrading">Secondary Regrading</label>
+                    <input type="submit">
                 </div>
+            </form>
+            <h5 class="py-3">Gems</h5>
+
+            <h5>Search</h5>
+            <div class="p-1">
+                <input type="search" id="gem-search" name="q">                    
+                <button>Search</button>
             </div>
         </div>
     </div>
-    <div class="p-3">
-        {% if not gems %}
-        <h3>Currency Prices</h3>
-        <table class="table">
-            <th>Name</th>
-            <th>Value</th>
-            {% for x in currency %}
-            <tr>
-                <td>{{ x.name }}</td>
-                <td>{{ x.value }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% else %}
-        <h3>Gems</h3>
-        <table class="table">
-            <th>Name</th>
-            <th>Alternative</th>
-            <th>Vaal</th>
-            <th>Level</th>
-            <th>Quality</th>
-            <th>Corrupted</th>
-            <th>Listed</th>
-            <th>Value</th>
-            {% for x in gems %}
-            <tr>
-                <td>{{ x.name }}</td>
-                <td>{{ x.alternative }}</td>
-                <td>{{ x.vaal }}</td>
-                <td>{{ x.level }}</td>
-                <td>{{ x.quality }}</td>
-                <td>{{ x.corrupted }}</td>
-                <td>{{ x.listed }}</td>
-                <td>{{ x.value }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% endif %}
-    </div>
+</div>
+<div class="p-3">
+    {% if not gems %}
+    <h3>Currency Prices</h3>
+    <table class="table">
+        <th>Name</th>
+        <th>Value</th>
+        {% for x in currency %}
+        <tr>
+            <td>{{ x.name }}</td>
+            <td>{{ x.value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3>Gems</h3>
+    <table class="table">
+        <th>Name</th>
+        <th>Alternative</th>
+        <th>Vaal</th>
+        <th>Level</th>
+        <th>Quality</th>
+        <th>Corrupted</th>
+        <th>Listed</th>
+        <th>Value</th>
+        {% for x in gems %}
+        <tr>
+            <td>{{ x.name }}</td>
+            <td>{{ x.alternative }}</td>
+            <td>{{ x.vaal }}</td>
+            <td>{{ x.level }}</td>
+            <td>{{ x.quality }}</td>
+            <td>{{ x.corrupted }}</td>
+            <td>{{ x.listed }}</td>
+            <td>{{ x.value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
 {% endblock %}
