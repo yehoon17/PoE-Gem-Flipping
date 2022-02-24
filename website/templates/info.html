@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="pt-3">Gem Info</h2>
+
+<table class="table">
+    <th>Name</th>
+    <th>Max Level</th>
+    <th>Vaal</th>
+    <th>Type</th>
+    {% for x in info %}
+    <tr>
+        <td>{{ x.name }}</td>
+        <td>{{ x.max_level }}</td>
+        <td>{{ x.has_vaal }}</td>
+        <td>{{ x.is_skill }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
