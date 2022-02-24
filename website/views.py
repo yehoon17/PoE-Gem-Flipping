@@ -4,7 +4,7 @@ from locale import currency
 from flask import Blueprint, render_template, request
 from . import db
 from website.utils import *
-from website.models import Currency
+from website.models import Currency, GemInfo
 
 views = Blueprint("views", __name__)
 
@@ -28,3 +28,9 @@ def flipping_method():
     ######################
 
     return render_template("home.html", gems=gems)
+
+
+@views.route("/gem-info")
+def gem_info():
+    info = GemInfo.query.all()
+    return render_template("info.html", info=info)
